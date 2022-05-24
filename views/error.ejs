@@ -1,0 +1,21 @@
+<%layout( 'layouts/boilerplate' )%>
+
+
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading">
+                    <%=err.message%>
+                </h4>
+                <!-- <p class="text-break">-->
+                <%if (process.env.NODE_ENV !=="production" ) {%>
+                    <%=err.stack%>
+                        <% } %>
+                            <!-- </p> -->
+                            <!--text-break is a bootstrap class which helps breaking the stack trace which exceeds out of the 
+                error box-->
+                            <pre style="white-space: pre-wrap; word-break: break-word;"><%= err.stack %></pre>
+                            <!--this to is a simalr approach to breaking the stack trace so as to fit in the error box-->
+            </div>
+        </div>
+    </div>

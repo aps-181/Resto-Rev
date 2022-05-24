@@ -1,0 +1,140 @@
+<%layout( 'layouts/boilerplate' )%>
+    <link rel="stylesheet" href="/stylesheets/stars.css">
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div id='map'></div>
+
+                <div id="campgroundCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <% if(campground.images.length){ %>
+                            <% campground.images.forEach((img,i)=> { %>
+
+                                <div class="carousel-item <%= i === 0?'active':'' %> ">
+                                    <img src="<%=img.url%>" class="d-block w-100" alt="...">
+                                </div>
+                                <% }) %>
+                                    <%} else {%>
+                                        <img src="data:image/jpeg;base64,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"
+                                            alt="">
+                                        <% } %>
+                    </div>
+                    <% if(campground.images.length>1){ %>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#campgroundCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#campgroundCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                        <% } %>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%=campground.title%>
+                    </h5>
+                    <p class="card-text">
+                        <%=campground.description%> .
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-muted">
+                        <%=campground.location%>
+                    </li>
+                    <li class="list-group-item">$<%=campground.price%>/night</li>
+                </ul>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        Submitted by:<%=campground.author.username%>
+                    </li>
+                </ul>
+                <% if(currentUser && campground.author.equals(currentUser)){ %>
+                    <div class="card-body">
+                        <a class="card-link btn btn-info" href="/campgrounds/<%= campground._id%>/edit ">Edit</a>
+                        <form class="d-inline" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="post">
+                            <button class="btn btn-danger">DELETE</button>
+                        </form>
+                    </div>
+                    <% } %>
+
+                        <div class="card-footer text-muted">
+                            2 days ago
+                        </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <% if(currentUser){%>
+                <form action="/campgrounds/<%=campground._id%>/reviews" method="post" class="mb-3 validated-form"
+                    novalidate>
+                    <h2>Leave a Review</h2>
+                    <div class="mb-3">
+                        <!-- <label class="form-label" for="rating">Rating</label> -->
+                        <!-- <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating"> -->
+                        <fieldset class="starability-basic">
+                            <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1"
+                                checked aria-label="No rating." />
+                            <input type="radio" id="first-rate1" name="review[rating]"" value=" 1" />
+                            <label for="first-rate1" title="Terrible">1 star</label>
+                            <input type="radio" id="first-rate2" name="review[rating]"" value=" 2" />
+                            <label for="first-rate2" title="Not good">2 stars</label>
+                            <input type="radio" id="first-rate3" name="review[rating]"" value=" 3" />
+                            <label for="first-rate3" title="Average">3 stars</label>
+                            <input type="radio" id="first-rate4" name="review[rating]"" value=" 4" />
+                            <label for="first-rate4" title="Very good">4 stars</label>
+                            <input type="radio" id="first-rate5" name="review[rating]"" value=" 5" />
+                            <label for="first-rate5" title="Amazing">5 stars</label>
+                        </fieldset>
+                    </div>
+
+
+
+                    <div class="mb-3">
+                        <label class="form-label" for="body">Review</label>
+                        <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3"
+                            required></textarea>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+
+                    <button class="btn btn-success">Submit</button>
+                </form>
+                <% } %>
+                    <% for(let review of campground.reviews) {%>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Rating: <%= review.rating %>
+                                </h5>
+                                <p class="starability-result" data-rating=<%=review.rating %> >
+                                    Rated: <%= review.rating %> stars
+                                </p>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    By <%= review.author.username %>
+                                </h6>
+                                <p class="card-text">Review: <%= review.body %>
+                                </p>
+                                <% if(currentUser && currentUser.equals(review.author)){%>
+                                    <form
+                                        action="/campgrounds/<%= campground._id %>/reviews/<%= review._id %>?_method=DELETE"
+                                        method="post">
+                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                    <% } %>
+                            </div>
+                        </div>
+                        <% } %>
+        </div>
+    </div>
+    </div>
+    <script>
+        const mapToken = '<%-process.env.MAPBOX_TOKEN%>'
+        const campground = <%-JSON.stringify(campground)%>
+    </script>
+    <script src="/javascripts/showPageMap.js"></script>
