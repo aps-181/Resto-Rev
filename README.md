@@ -1,1 +1,1 @@
-A restaurant review web site which allows you to add,view and post reviews about restaurants all around the world
+YelpCamp a web site which allows users to add and view campgrounds as well as post reviews.
